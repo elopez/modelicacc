@@ -276,6 +276,23 @@ namespace Modelica {
     long & printAsC(std::ios_base& s);
     long printAsCActive (std::ios_base& s) ;
     void setCFlag(std::ios_base& s, long n) ;
+
+    std::size_t hash_value(String const& b);
+    std::size_t hash_value(Boolean const& b);
+    std::size_t hash_value(BinOp const& b);
+    std::size_t hash_value(UnaryOp const& b);
+    std::size_t hash_value(IfExp const& b);
+    std::size_t hash_value(SubEnd const& b);
+    std::size_t hash_value(SubAll const& b);
+    std::size_t hash_value(Call const& b);
+    std::size_t hash_value(Brace const& b);
+    std::size_t hash_value(Bracket const& b);
+    std::size_t hash_value(FunctionExp const& b);
+    std::size_t hash_value(ForExp const& b);
+    std::size_t hash_value(Reference const& b);
+    std::size_t hash_value(Range const& b);
+    std::size_t hash_value(Output const& b);
+    std::size_t hash_value(Named const& b);
   };
 };
 #endif

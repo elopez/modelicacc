@@ -20,9 +20,10 @@
 #ifndef AST_VISITOR_REPLACEINDEX
 #define AST_VISITOR_REPLACEINDEX
 #include <boost/variant/static_visitor.hpp>
+#include <boost/functional/hash.hpp>
 #include <ast/expression.h>
 #include <util/table.h>
-#include <map>
+#include <unordered_map>
 
 namespace Modelica {
 
@@ -44,7 +45,7 @@ namespace Modelica {
     Expression operator()(Bracket) const;
     Expression operator()(Call) const;
     Expression operator()(FunctionExp) const;
-    Expression operator()(ForExp) const;
+    Expression operator()(ForExp);
     Expression operator()(IfExp) const;
     Expression operator()(Named) const;
     Expression operator()(Output) const;
@@ -53,8 +54,8 @@ namespace Modelica {
     const VarSymbolTable &vtable; 
     bool eval_parameters;
   private:
-		std::map <std::pair< Expression, Indexes>, int> reference_names; 
-		std::map < Expression , int> reference_names2; 
+		std::unordered_map <std::pair< Expression, Indexes>, int, boost::hash<std::pair< Expression, Indexes>>> reference_names;
+		std::unordered_map < Expression , int, boost::hash<Expression>> reference_names2;
 		int counter;
   }; 
 }

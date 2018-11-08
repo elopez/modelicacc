@@ -22,6 +22,7 @@
 #include <boost/variant/get.hpp>
 #include <ast/expression.h>
 #include <util/debug.h>
+#include <string.h>
 
 long depth;
 namespace Modelica {
@@ -387,6 +388,105 @@ namespace Modelica {
         printAsC(s) = n;
     } 
 
+    std::size_t hash_value(String const& b)
+    {
+        boost::hash<std::string> hasher;
+        return hasher(b.val());
+    }
+
+    std::size_t hash_value(Boolean const& b)
+    {
+        boost::hash<bool> hasher;
+        return hasher(b.val());
+    }
+
+    std::size_t hash_value(BinOp const& b)
+    {
+        std::size_t seed = 0;
+        boost::hash_combine(seed, b.op());
+        boost::hash_combine(seed, b.left());
+        boost::hash_combine(seed, b.right());
+
+        return seed;
+    }
+
+    std::size_t hash_value(UnaryOp const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(IfExp const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(SubEnd const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(SubAll const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(Call const& b)
+    {
+        //boost::hash<bool> hasher;
+        return 0;
+    }
+
+    std::size_t hash_value(Brace const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(Bracket const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(FunctionExp const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(ForExp const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(Reference const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(Range const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(Output const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
+
+    std::size_t hash_value(Named const& b)
+    {
+        //TODO: implement a hash here
+        return 0;
+    }
 
   }
 }

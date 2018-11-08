@@ -133,13 +133,15 @@ namespace Modelica {
     Expression ReplaceIndex::operator()(FunctionExp v) const { 
       return v;
     }
-    Expression ReplaceIndex::operator()(ForExp v) const {
+    Expression ReplaceIndex::operator()(ForExp v) {
 			Expression e = v.exp_;
 			Indexes i = v.indices_;
 			if (reference_names2.count(e)){
 				reference_names2[e] = counter++;
+
 			}
-      return e++reference_names2[e];
+      //TODO: check this
+      return e;
     }
     Expression ReplaceIndex::operator()(Named v) const {
       return v;
